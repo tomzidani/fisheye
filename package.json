@@ -1,0 +1,14 @@
+{
+  "name": "fisheye",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tomzidani/fisheye.git",
+  "author": "Tom Zidani <tom.zidani@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "sass --watch --no-source-map ./assets/css/scss/main.scss:./assets/css/main.css --style compressed"
+  },
+  "dependencies": {
+    "sass": "^1.44.0"
+  }
+}

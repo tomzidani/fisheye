@@ -1,0 +1,31 @@
+// Form
+// ----
+.app-form {
+  .form {
+    &__row {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+
+        font-size: 36px;
+        color: $black-light;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px 10px;
+
+        border: none;
+        background: $white;
+        font-size: 18px;
+        border-radius: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+// Photographer card
+// -----------------
+.photographer-card {
+  .card {
+    &__wrapper {
+      text-align: center;
+
+      > a:hover {
+        > .card__title,
+        > .card__media {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &__media {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      margin: 0 auto;
+
+      border-radius: 50%;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+      transition: ease-in-out 0.2s;
+    }
+
+    &__image {
+      @include fullcover;
+
+      border-radius: 50%;
+    }
+
+    &__title {
+      margin-top: 20px;
+
+      font-size: 36px;
+      transition: ease-in-out 0.2s;
+    }
+
+    &__country {
+      font-size: 15px;
+    }
+
+    &__tagline {
+      margin: 5px 0;
+
+      font-size: 18px;
+    }
+
+    &__price {
+      color: $gray;
+
+      font-size: 16px;
+    }
+  }
+}

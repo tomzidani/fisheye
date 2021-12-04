@@ -1,0 +1,16 @@
+// Home
+// ----
+.app-home {
+  .home {
+    &__photographers {
+      margin-top: 80px;
+      @include columns-wrapper;
+
+      .photographer-card {
+        margin-bottom: 80px;
+
+        @include columns-span(4);
+      }
+    }
+  }
+}

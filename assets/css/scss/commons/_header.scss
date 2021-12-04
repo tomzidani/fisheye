@@ -1,0 +1,23 @@
+// Header
+// ------
+.app-header {
+  padding: 40px 100px;
+
+  .header {
+    &__wrapper {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__title {
+      font-size: 36px;
+      color: $red;
+    }
+
+    &__logo {
+      max-width: 200px;
+    }
+  }
+}

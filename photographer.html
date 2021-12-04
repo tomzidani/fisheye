@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Fisheye – Photographe</title>
+
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header__wrapper">
+        <a href="/">
+          <img src="./assets/img/logo.png" alt="Page d'accueil Fisheye" class="header__logo" />
+        </a>
+      </div>
+    </header>
+    <main class="app-photographer">
+      <section class="photographer__infos">
+        <div class="infos__wrapper">
+          <button class="btn infos__button">Contactez-moi</button>
+        </div>
+      </section>
+      <div class="photographer__modal">
+        <div class="modal__wrapper">
+          <div class="modal__content">
+            <div class="modal__header">
+              <h2 class="modal__title">Contactez-moi</h2>
+              <div class="modal__close"></div>
+            </div>
+            <div class="modal__body">
+              <form class="app-form">
+                <div class="form__row">
+                  <label for="firstname">Prénom</label>
+                  <input type="text" id="firstname" name="firstname" />
+                </div>
+                <div class="form__row">
+                  <button class="btn modal__button">Envoyer</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./scripts/main.js" type="module"></script>
+  </body>
+</html>
