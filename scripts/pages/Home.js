@@ -7,7 +7,6 @@ class Home {
   }
 
   init = async () => {
-    console.log("Initialisation page d'accueil")
     this.photographers = await this.getPhotographers()
     this.displayPhotographers()
   }

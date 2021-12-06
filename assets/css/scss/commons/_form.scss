@@ -26,6 +26,17 @@
         font-size: 18px;
         border-radius: 5px;
       }
+
+      select {
+        padding: 20px 30px 20px 20px;
+
+        @include dmsans--medium;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        background: $red;
+        color: $white;
+      }
     }
   }
 }

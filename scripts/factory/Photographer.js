@@ -11,7 +11,7 @@ class Photographer {
 
   getCard = () => {
     let cardEl = `<article class="photographer-card"><div class="card__wrapper">`
-    cardEl += `<a href="#">`
+    cardEl += `<a href="/photographer.html?id=${this.id}">`
     cardEl += `<div class="card__media"><img src="${this.portrait}" alt="${this.name}" class="card__image" /></div>`
     cardEl += `<h2 class="card__title heading__title">${this.name}</h2>`
     cardEl += `</a>`
@@ -21,6 +21,17 @@ class Photographer {
     cardEl += `</div></article>`
 
     return cardEl
+  }
+
+  getInfos = () => {
+    let infosEl = `<div class="infos__details">`
+    infosEl += `<h1 class="infos__name heading__title">${this.name}</h1>`
+    infosEl += `<h2 class="infos__country heading__subtitle">${this.country}</h2>`
+    infosEl += `<p class="infos__tagline">${this.tagline}</p></div>`
+    infosEl += `<button class="btn infos__button">Contactez-moi</button>`
+    infosEl += `<div class="infos__media"><img src="${this.portrait}" class="infos__image" alt="${this.name}" /></div>`
+
+    return infosEl
   }
 }
 

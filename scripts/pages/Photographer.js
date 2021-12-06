@@ -1,15 +1,54 @@
+import create from "../factory/factory.js"
+import { getData } from "../utils/helpers/data.helpers.js"
+
 class Photographer {
   constructor() {
-    this.modal = document.querySelector(".photographer__modal")
+    this.photographer = {}
+    this.photographerId = parseInt(window.location.search.split("?id=")[1])
+
+    this.modal = null
   }
 
-  init = () => {
-    console.log("Initialisation page photographe")
+  init = async () => {
+    if (this.photographerId === NaN || !this.photographerId) this.redirect()
+
+    this.photographer = await this.getPhotographer()
+    this.pictures = await this.getPictures()
+
+    this.displayPhotographer()
 
     this.initModal()
   }
 
+  redirect = () => {
+    window.location.href = "/"
+  }
+
+  getPhotographer = async () => {
+    const photographers = await getData("./scripts/provider/photographers.json")
+    const photographer = photographers.photographers.find((p) => p.id === this.photographerId)
+
+    if (!photographer) this.redirect()
+
+    return create("Photographer", photographer)
+  }
+
+  getPictures = async () => {
+    const pictures = await getData("./scripts/provider/medias.json")
+    const photographerPictures = pictures.media.filter((m) => m.photographerId === this.photographerId)
+
+    return photographerPictures
+  }
+
+  displayPhotographer = () => {
+    const infoSection = document.querySelector(".infos__wrapper")
+
+    infoSection.innerHTML = this.photographer.getInfos()
+  }
+
   initModal = () => {
+    this.modal = document.querySelector(".photographer__modal")
+
     const modalBtn = document.querySelector(".infos__button")
     const modalCloseBtn = document.querySelector(".modal__close")
 

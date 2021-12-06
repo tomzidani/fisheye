@@ -18,10 +18,25 @@
     </header>
     <main class="app-photographer">
       <section class="photographer__infos">
-        <div class="infos__wrapper">
-          <button class="btn infos__button">Contactez-moi</button>
-        </div>
+        <div class="infos__wrapper"></div>
       </section>
+
+      <section class="photographer__pictures">
+        <div class="pictures__header">
+          <form class="app-form">
+            <div class="form__row">
+              <label for="sort">Trier par</label>
+              <select id="sort" name="sort">
+                <option name="popularity">Popularité</option>
+                <option name="date">Date</option>
+                <option name="title">Titre</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="pictures__body"></div>
+      </section>
+
       <div class="photographer__modal">
         <div class="modal__wrapper">
           <div class="modal__content">
