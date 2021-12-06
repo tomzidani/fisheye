@@ -16,8 +16,11 @@ class Photographer {
     this.pictures = await this.getPictures()
 
     this.displayPhotographer()
+    this.displayPictures()
 
     this.initModal()
+
+    console.log(this.pictures)
   }
 
   redirect = () => {
@@ -34,16 +37,26 @@ class Photographer {
   }
 
   getPictures = async () => {
-    const pictures = await getData("./scripts/provider/medias.json")
-    const photographerPictures = pictures.media.filter((m) => m.photographerId === this.photographerId)
+    const allPictures = await getData("./scripts/provider/medias.json")
+    const photographerPictures = allPictures.media.filter((m) => m.photographerId === this.photographerId)
 
-    return photographerPictures
+    let pictures = []
+
+    photographerPictures.forEach((p) => pictures.push(create("Media", p)))
+
+    return pictures
   }
 
   displayPhotographer = () => {
     const infoSection = document.querySelector(".infos__wrapper")
 
     infoSection.innerHTML = this.photographer.getInfos()
+  }
+
+  displayPictures = () => {
+    const picturesSection = document.querySelector(".pictures__body")
+
+    this.pictures.forEach((p) => (picturesSection.innerHTML += p.getMedia()))
   }
 
   initModal = () => {
