@@ -50,8 +50,8 @@
       }
     }
 
-    &__pictures {
-      .pictures {
+    &__medias {
+      .medias {
         &__header {
           margin: 10px 0 30px 0;
 
@@ -67,10 +67,10 @@
           }
         }
 
-        &__body {
+        &__list {
           @include columns-wrapper(10%);
 
-          .picture-card {
+          .media-card {
             @include columns-span(4, 10%);
           }
         }

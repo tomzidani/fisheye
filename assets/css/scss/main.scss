@@ -17,9 +17,13 @@
 // Cards
 // -----
 @import "./cards/photographer";
-@import "./cards/picture";
+@import "./cards/media";
 
 // Pages
 // -----
 @import "./pages/home";
 @import "./pages/photographer";
+
+// Components
+// ----------
+@import "./components/lightbox";

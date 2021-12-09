@@ -1,0 +1,88 @@
+// Lightbox
+// --------
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  background: $white;
+
+  z-index: 5;
+
+  &.opened {
+    display: flex;
+  }
+
+  &__media {
+    position: relative;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 50px;
+    height: 90%;
+  }
+
+  &__image,
+  &__video {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__title {
+    margin-top: 10px;
+  }
+
+  // Buttons
+  // -------
+  &__close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 70px;
+    right: 100px;
+
+    background: url("../img/icons/close-red.svg") 100%/100% no-repeat;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__previous,
+  &__next {
+    position: absolute;
+    height: 50px;
+    width: 30px;
+    top: 50%;
+
+    transform: translateY(-50%);
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+
+    &.disabled {
+      opacity: 0.5;
+      user-select: none;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__previous {
+    left: 100px;
+
+    background: url("../img/icons/arrow.svg") 100%/100% no-repeat;
+  }
+
+  &__next {
+    right: 100px;
+
+    background: url("../img/icons/arrow.svg") 100%/100% no-repeat;
+    transform: translateY(-50%) rotate(180deg);
+  }
+}

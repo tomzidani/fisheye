@@ -1,11 +1,11 @@
 import create from "../factory/factory.js"
+import Lightbox from "../components/Lightbox.js"
 import { getData } from "../utils/helpers/data.helpers.js"
 
 class Photographer {
   constructor() {
     this.photographer = {}
     this.photographerId = parseInt(window.location.search.split("?id=")[1])
-
     this.modal = null
   }
 
@@ -13,14 +13,16 @@ class Photographer {
     if (this.photographerId === NaN || !this.photographerId) this.redirect()
 
     this.photographer = await this.getPhotographer()
-    this.pictures = await this.getPictures()
+    this.medias = await this.getMedias()
 
     this.displayPhotographer()
-    this.displayPictures()
+
+    Lightbox.init(this.medias)
+
+    this.displayMedias()
+    this.bindMediasEvents()
 
     this.initModal()
-
-    console.log(this.pictures)
   }
 
   redirect = () => {
@@ -36,27 +38,35 @@ class Photographer {
     return create("Photographer", photographer)
   }
 
-  getPictures = async () => {
-    const allPictures = await getData("./scripts/provider/medias.json")
-    const photographerPictures = allPictures.media.filter((m) => m.photographerId === this.photographerId)
+  // Medias
+  // ------
+  getMedias = async () => {
+    const allMedias = await getData("./scripts/provider/medias.json")
+    const photographerMedias = allMedias.media.filter((m) => m.photographerId === this.photographerId)
 
-    let pictures = []
+    let medias = []
 
-    photographerPictures.forEach((p) => pictures.push(create("Media", p)))
+    photographerMedias.forEach((m) => medias.push(create("Media", m)))
 
-    return pictures
+    return medias
+  }
+
+  displayMedias = () => {
+    const mediasSection = document.querySelector(".medias__list")
+
+    this.medias.forEach((m) => (mediasSection.innerHTML += m.getMedia()))
+  }
+
+  bindMediasEvents = () => {
+    const medias = document.querySelectorAll(".media-card .card__media")
+
+    medias.forEach((m) => m.addEventListener("click", () => Lightbox.openLightbox(m.parentElement)))
   }
 
   displayPhotographer = () => {
     const infoSection = document.querySelector(".infos__wrapper")
 
     infoSection.innerHTML = this.photographer.getInfos()
-  }
-
-  displayPictures = () => {
-    const picturesSection = document.querySelector(".pictures__body")
-
-    this.pictures.forEach((p) => (picturesSection.innerHTML += p.getMedia()))
   }
 
   initModal = () => {
