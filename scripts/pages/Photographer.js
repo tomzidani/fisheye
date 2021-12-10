@@ -1,12 +1,12 @@
 import create from "../factory/factory.js"
 import Lightbox from "../components/Lightbox.js"
 import { getData } from "../utils/helpers/data.helpers.js"
+import Modal from "../components/Modal.js"
 
 class Photographer {
   constructor() {
     this.photographer = {}
     this.photographerId = parseInt(window.location.search.split("?id=")[1])
-    this.modal = null
   }
 
   init = async () => {
@@ -22,7 +22,7 @@ class Photographer {
     this.displayMedias()
     this.bindMediasEvents()
 
-    this.initModal()
+    Modal.init(this.photographer)
   }
 
   redirect = () => {
@@ -67,24 +67,6 @@ class Photographer {
     const infoSection = document.querySelector(".infos__wrapper")
 
     infoSection.innerHTML = this.photographer.getInfos()
-  }
-
-  initModal = () => {
-    this.modal = document.querySelector(".photographer__modal")
-
-    const modalBtn = document.querySelector(".infos__button")
-    const modalCloseBtn = document.querySelector(".modal__close")
-
-    modalBtn.addEventListener("click", this.openModal)
-    modalCloseBtn.addEventListener("click", this.closeModal)
-  }
-
-  openModal = () => {
-    this.modal.classList.add("opened")
-  }
-
-  closeModal = () => {
-    this.modal.classList.remove("opened")
   }
 }
 
