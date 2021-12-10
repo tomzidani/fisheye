@@ -1,42 +1,28 @@
 class Lightbox {
   constructor() {
-    this.lightbox
+    this.lightbox = document.querySelector('[data-component="lightbox"]')
 
     this.medias = []
     this.currentMedia = {}
     this.currentMediaIndex
   }
 
-  init = (medias) => {
+  init = async (medias) => {
     this.medias = medias
 
-    this.display()
     this.bindEvents()
   }
 
   bindEvents = () => {
-    const close = this.lightbox.querySelector(".lightbox__close")
-    const next = this.lightbox.querySelector(".lightbox__next")
-    const previous = this.lightbox.querySelector(".lightbox__previous")
+    const medias = document.querySelectorAll(".media-card .card__media")
+    const close = document.querySelector(".lightbox__close")
+    const next = document.querySelector(".lightbox__next")
+    const previous = document.querySelector(".lightbox__previous")
 
+    medias.forEach((m) => m.addEventListener("click", () => this.open(m.parentElement)))
     close.addEventListener("click", this.close)
     previous.addEventListener("click", () => this.setMedia(this.currentMediaIndex - 1))
     next.addEventListener("click", () => this.setMedia(this.currentMediaIndex + 1))
-  }
-
-  display = () => {
-    const wrapper = document.querySelector(".app-photographer")
-
-    let lightboxEl = `<div class="lightbox">`
-    lightboxEl += `<div class="lightbox__previous"></div>`
-    lightboxEl += `<div class="lightbox__media"></div>`
-    lightboxEl += `<div class="lightbox__next"></div>`
-    lightboxEl += `<div class="lightbox__close"></div>`
-    lightboxEl += `</div>`
-
-    wrapper.innerHTML += lightboxEl
-
-    this.lightbox = document.querySelector(".lightbox")
   }
 
   open = (media) => {
@@ -80,4 +66,4 @@ class Lightbox {
   }
 }
 
-export default new Lightbox()
+export default Lightbox

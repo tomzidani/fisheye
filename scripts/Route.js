@@ -11,7 +11,7 @@ class Route {
 
   get = () => {
     for (const r of this.routes) {
-      if (window.location.pathname.includes(r.path)) return r.Page.init()
+      if (window.location.pathname.includes(r.path)) return new r.Page().init()
     }
   }
 }

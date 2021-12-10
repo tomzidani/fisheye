@@ -16,12 +16,10 @@ class Photographer {
     this.medias = await this.getMedias()
 
     this.displayPhotographer()
-
-    Modal.init(this.photographer)
-    Lightbox.init(this.medias)
-
     this.displayMedias()
-    this.bindMediasEvents()
+
+    new Modal().init(this.photographer)
+    new Lightbox().init(this.medias)
   }
 
   redirect = () => {
@@ -56,16 +54,6 @@ class Photographer {
     this.medias.forEach((m) => (mediasSection.innerHTML += m.getMedia()))
   }
 
-  bindMediasEvents = () => {
-    const medias = document.querySelectorAll(".media-card .card__media")
-
-    console.log(medias)
-
-    medias.forEach((m) => m.addEventListener("click", () => Lightbox.open(m.parentElement)))
-
-    console.log(medias)
-  }
-
   displayPhotographer = () => {
     const infoSection = document.querySelector(".infos__wrapper")
 
@@ -73,4 +61,4 @@ class Photographer {
   }
 }
 
-export default new Photographer()
+export default Photographer
