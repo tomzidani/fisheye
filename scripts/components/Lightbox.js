@@ -1,16 +1,16 @@
 class Lightbox {
   constructor() {
-    this.lightbox = null
+    this.lightbox
 
     this.medias = []
     this.currentMedia = {}
-    this.currentMediaIndex = null
+    this.currentMediaIndex
   }
 
   init = (medias) => {
     this.medias = medias
 
-    this.displayLightbox()
+    this.display()
     this.bindEvents()
   }
 
@@ -19,15 +19,13 @@ class Lightbox {
     const next = this.lightbox.querySelector(".lightbox__next")
     const previous = this.lightbox.querySelector(".lightbox__previous")
 
-    close.addEventListener("click", this.closeLightbox)
-    next.addEventListener("click", () => this.setMedia(this.currentMediaIndex + 1))
+    close.addEventListener("click", this.close)
     previous.addEventListener("click", () => this.setMedia(this.currentMediaIndex - 1))
+    next.addEventListener("click", () => this.setMedia(this.currentMediaIndex + 1))
   }
 
-  // Lightbox
-  // --------
-  displayLightbox = () => {
-    const photographerPage = document.querySelector("main.app-photographer")
+  display = () => {
+    const wrapper = document.querySelector(".app-photographer")
 
     let lightboxEl = `<div class="lightbox">`
     lightboxEl += `<div class="lightbox__previous"></div>`
@@ -36,24 +34,22 @@ class Lightbox {
     lightboxEl += `<div class="lightbox__close"></div>`
     lightboxEl += `</div>`
 
-    photographerPage.innerHTML += lightboxEl
+    wrapper.innerHTML += lightboxEl
 
     this.lightbox = document.querySelector(".lightbox")
   }
 
-  openLightbox = (media) => {
+  open = (media) => {
     const mediaIndex = [...media.parentElement.children].indexOf(media)
 
     this.setMedia(mediaIndex)
     this.lightbox.classList.add("opened")
   }
 
-  closeLightbox = () => {
+  close = () => {
     this.lightbox.classList.remove("opened")
   }
 
-  // Medias
-  // ------
   setMedia = (i) => {
     if (i < 0) i = this.medias.length - 1
     if (i === this.medias.length) i = 0

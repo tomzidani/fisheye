@@ -17,12 +17,11 @@ class Photographer {
 
     this.displayPhotographer()
 
+    Modal.init(this.photographer)
     Lightbox.init(this.medias)
 
     this.displayMedias()
     this.bindMediasEvents()
-
-    Modal.init(this.photographer)
   }
 
   redirect = () => {
@@ -60,7 +59,11 @@ class Photographer {
   bindMediasEvents = () => {
     const medias = document.querySelectorAll(".media-card .card__media")
 
-    medias.forEach((m) => m.addEventListener("click", () => Lightbox.openLightbox(m.parentElement)))
+    console.log(medias)
+
+    medias.forEach((m) => m.addEventListener("click", () => Lightbox.open(m.parentElement)))
+
+    console.log(medias)
   }
 
   displayPhotographer = () => {
