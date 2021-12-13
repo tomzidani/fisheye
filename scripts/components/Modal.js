@@ -17,8 +17,6 @@ class Modal {
 
     open.addEventListener("click", this.open)
     close.addEventListener("click", this.close)
-
-    console.log(open, close)
   }
 
   display = () => {

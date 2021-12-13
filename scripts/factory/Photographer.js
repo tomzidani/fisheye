@@ -11,7 +11,7 @@ class Photographer {
 
   getCard = () => {
     let cardEl = `<article class="photographer-card"><div class="card__wrapper">`
-    cardEl += `<a href="/photographer.html?id=${this.id}">`
+    cardEl += `<a href="/photographer.html?id=${this.id}" aria-label="${this.name}">`
     cardEl += `<div class="card__media"><img src="${this.portrait}" alt="${this.name}" class="card__image" /></div>`
     cardEl += `<h2 class="card__title heading__title">${this.name}</h2>`
     cardEl += `</a>`

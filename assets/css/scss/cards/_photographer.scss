@@ -5,10 +5,14 @@
     &__wrapper {
       text-align: center;
 
-      > a:hover {
-        > .card__title,
-        > .card__media {
-          opacity: 0.7;
+      > a {
+        display: block;
+
+        &:hover {
+          > .card__title,
+          > .card__media {
+            opacity: 0.7;
+          }
         }
       }
     }
