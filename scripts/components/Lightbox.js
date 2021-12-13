@@ -1,6 +1,7 @@
 class Lightbox {
   constructor() {
     this.lightbox = document.querySelector('[data-component="lightbox"]')
+    this.isLightboxOpen = false
 
     this.medias = []
     this.currentMedia = {}
@@ -19,20 +20,39 @@ class Lightbox {
     const next = document.querySelector(".lightbox__next")
     const previous = document.querySelector(".lightbox__previous")
 
-    medias.forEach((m) => m.addEventListener("click", () => this.open(m.parentElement)))
-    close.addEventListener("click", this.close)
+    medias.forEach((m) => {
+      m.addEventListener("click", () => this.open(m.parentElement))
+      m.addEventListener("keyup", (e) => e.key === "Enter" && this.open(m.parentElement))
+    })
+
     previous.addEventListener("click", () => this.setMedia(this.currentMediaIndex - 1))
+    previous.addEventListener("keyup", (e) => e.key === "Enter" && this.setMedia(this.currentMediaIndex - 1))
+
     next.addEventListener("click", () => this.setMedia(this.currentMediaIndex + 1))
+    next.addEventListener("keyup", (e) => e.key === "Enter" && this.setMedia(this.currentMediaIndex + 1))
+
+    close.addEventListener("click", this.close)
+    close.addEventListener("keyup", (e) => e.key === "Enter" && this.close)
+
+    window.addEventListener("keyup", (e) => {
+      if (this.isLightboxOpen) {
+        e.key === "ArrowLeft" && this.setMedia(this.currentMediaIndex - 1)
+        e.key === "ArrowRight" && this.setMedia(this.currentMediaIndex + 1)
+        e.key === "Escape" && this.close()
+      }
+    })
   }
 
   open = (media) => {
     const mediaIndex = [...media.parentElement.children].indexOf(media)
 
     this.setMedia(mediaIndex)
+    this.isLightboxOpen = true
     this.lightbox.classList.add("opened")
   }
 
   close = () => {
+    this.isLightboxOpen = false
     this.lightbox.classList.remove("opened")
   }
 
@@ -62,6 +82,7 @@ class Lightbox {
     const title = `<h2 class="lightbox__title heading__subtitle">${this.currentMedia.title}</h2>`
     const mediaEl = this.currentMedia.video ? video : image
 
+    mediaWrapper.setAttribute("aria-label", this.currentMedia.title)
     mediaWrapper.innerHTML += mediaEl + title
   }
 }

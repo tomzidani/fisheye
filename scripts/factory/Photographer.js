@@ -28,10 +28,16 @@ class Photographer {
     infosEl += `<h1 class="infos__name heading__title">${this.name}</h1>`
     infosEl += `<h2 class="infos__country heading__subtitle">${this.country}</h2>`
     infosEl += `<p class="infos__tagline">${this.tagline}</p></div>`
-    infosEl += `<button class="btn infos__button">Contactez-moi</button>`
+    infosEl += `<button class="btn infos__button" aria-label="Contactez-moi">Contactez-moi</button>`
     infosEl += `<div class="infos__media"><img src="${this.portrait}" class="infos__image" alt="${this.name}" /></div>`
 
     return infosEl
+  }
+
+  getPricesAndLikes = (totalLikes) => {
+    let detailsEl = `<div class="photographer__details"><div class="details__wrapper">`
+    detailsEl += `<p class="details__likes">${totalLikes}</p><p class="details__price">${this.price}&euro / jour</p>`
+    detailsEl += `</div></div>`
   }
 }
 

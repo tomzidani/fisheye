@@ -23,10 +23,10 @@ class Modal {
     return new Promise((resolve) => {
       const wrapper = document.querySelector(".app-photographer")
 
-      let modalEl = `<div class="photographer__modal"><div class="modal__wrapper">`
+      let modalEl = `<div class="photographer__modal"><div class="modal__wrapper" tabindex="0" aria-label="Contactez-moi ${this.photographer.name}">`
       modalEl += `<div class="modal__content">`
       modalEl += `<div class="modal__header"><h2 class="modal__title">Contactez-moi</h2>`
-      modalEl += `<h2 class="modal__title">${this.photographer.name}</h2><div class="modal__close"></div></div>`
+      modalEl += `<h2 class="modal__title">${this.photographer.name}</h2><div class="modal__close" tabindex="0" aria-label="Fermer le formulaire"></div></div>`
       modalEl += `<div class="modal__body">`
       modalEl += `<form class="app-form">`
       modalEl += `<div class="form__row"><label for="firstname">Prénom</label><input type="text" id="firstname" name="firstname" /></div>`
