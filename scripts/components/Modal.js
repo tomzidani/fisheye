@@ -12,11 +12,26 @@ class Modal {
   }
 
   bindEvents = () => {
+    const form = this.modal.querySelector("form")
     const open = document.querySelector(".infos__button")
     const close = this.modal.querySelector(".modal__close")
 
+    form.addEventListener("submit", this.submitForm)
     open.addEventListener("click", this.open)
     close.addEventListener("click", this.close)
+  }
+
+  submitForm = (e) => {
+    e.preventDefault()
+
+    const form = {
+      firstname: e.target.querySelector("#firstname").value,
+      lastname: e.target.querySelector("#lastname").value,
+      email: e.target.querySelector("#email").value,
+      message: e.target.querySelector("#message").value,
+    }
+
+    console.log(form)
   }
 
   display = () => {
