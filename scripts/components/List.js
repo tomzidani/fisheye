@@ -7,7 +7,7 @@ class List {
   init = async (medias) => {
     this.medias = medias
 
-    this.sortList()
+    await this.display(this.sort)
     this.bindEvents()
   }
 
@@ -18,24 +18,28 @@ class List {
 
     list.addEventListener("sort", () => this.display())
     likes.forEach((l) => l.addEventListener("click", this.like))
-    sort.addEventListener("change", this.sortList)
+    sort.addEventListener("change", async (e) => await this.display(e.target.value))
   }
 
-  display = () => {
-    const e = new Event("display")
-    const listWrapper = document.querySelector('[data-component="list"]')
+  display = (sort) => {
+    return new Promise((resolve) => {
+      const e = new Event("display")
+      const listWrapper = document.querySelector('[data-component="list"]')
 
-    this.reset()
-    this.medias.forEach((m) => (listWrapper.innerHTML += m.getMedia()))
-    listWrapper.dispatchEvent(e)
+      this.sort = sort || this.sort
+      this.sortList()
+
+      this.reset()
+      this.medias.forEach((m) => (listWrapper.innerHTML += m.getMedia()))
+
+      listWrapper.dispatchEvent(e)
+
+      resolve()
+    })
   }
 
-  sortList = (e) => {
-    const event = new Event("sort")
-    const sort = e ? e.target.value : this.sort
-    const list = document.querySelector('[data-component="list"]')
-
-    switch (sort) {
+  sortList = () => {
+    switch (this.sort) {
       case "popularity":
       default:
         this.medias = this.medias.sort((a, b) => (a.likes > b.likes ? -1 : b.likes > a.likes ? 1 : 0))
@@ -49,8 +53,6 @@ class List {
         this.medias = this.medias.sort((a, b) => (a.title > b.title ? 1 : b.title > a.title ? -1 : 0))
         break
     }
-
-    list.dispatchEvent(event)
   }
 
   like = (e) => {
