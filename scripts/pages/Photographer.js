@@ -2,11 +2,14 @@ import create from "../factory/factory.js"
 import Lightbox from "../components/Lightbox.js"
 import { getData } from "../utils/helpers/data.helpers.js"
 import Modal from "../components/Modal.js"
+import List from "../components/List.js"
 
 class Photographer {
   constructor() {
     this.photographer = {}
     this.photographerId = parseInt(window.location.search.split("?id=")[1])
+
+    this.medias
   }
 
   init = async () => {
@@ -16,7 +19,9 @@ class Photographer {
     this.medias = await this.getMedias()
 
     this.displayPhotographer()
-    this.displayMedias()
+
+    const list = new List()
+    list.init(this.medias)
 
     new Modal().init(this.photographer)
     new Lightbox().init(this.medias)
@@ -56,6 +61,7 @@ class Photographer {
 
   displayPhotographer = () => {
     const infoSection = document.querySelector(".infos__wrapper")
+    const pageWrapper = document.querySelector(".app-photographer")
 
     infoSection.innerHTML = this.photographer.getInfos()
   }

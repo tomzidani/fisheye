@@ -15,10 +15,18 @@ class Lightbox {
   }
 
   bindEvents = () => {
+    const list = document.querySelector('[data-component="list"]')
     const medias = document.querySelectorAll(".media-card .card__media")
     const close = document.querySelector(".lightbox__close")
     const next = document.querySelector(".lightbox__next")
     const previous = document.querySelector(".lightbox__previous")
+
+    list.addEventListener("display", () => {
+      document.querySelectorAll(".media-card .card__media").forEach((m) => {
+        m.addEventListener("click", () => this.open(m.parentElement))
+        m.addEventListener("keyup", (e) => e.key === "Enter" && this.open(m.parentElement))
+      })
+    })
 
     medias.forEach((m) => {
       m.addEventListener("click", () => this.open(m.parentElement))
