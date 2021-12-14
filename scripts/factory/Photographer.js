@@ -36,8 +36,10 @@ class Photographer {
 
   getPricesAndLikes = (totalLikes) => {
     let detailsEl = `<div class="photographer__details"><div class="details__wrapper">`
-    detailsEl += `<p class="details__likes">${totalLikes}</p><p class="details__price">${this.price}&euro / jour</p>`
+    detailsEl += `<p class="details__likes">${totalLikes}</p><p class="details__price">${this.price}&euro; / jour</p>`
     detailsEl += `</div></div>`
+
+    return detailsEl
   }
 }
 

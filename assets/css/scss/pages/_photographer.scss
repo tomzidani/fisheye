@@ -134,5 +134,49 @@
         }
       }
     }
+
+    // Details
+    // -------
+    &__details {
+      position: fixed;
+      bottom: 0;
+      right: 30px;
+      width: 380px;
+
+      background: $red-light;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+
+      .details {
+        &__wrapper {
+          display: flex;
+          padding: 20px 30px;
+
+          font-size: 24px;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &__likes {
+          position: relative;
+          padding-right: 23px;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 18px;
+            height: 19px;
+
+            background: url("../img/icons/heart-black.svg") 100%/100% no-repeat;
+            transform: translateY(-50%);
+          }
+        }
+
+        &__price {
+        }
+      }
+    }
   }
 }

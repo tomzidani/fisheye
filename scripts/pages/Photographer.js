@@ -56,8 +56,10 @@ class Photographer {
   displayPhotographer = () => {
     const infoSection = document.querySelector(".infos__wrapper")
     const pageWrapper = document.querySelector(".app-photographer")
+    const totalLikes = this.medias.reduce((a, b) => +a + +b.likes, 0)
 
     infoSection.innerHTML = this.photographer.getInfos()
+    pageWrapper.innerHTML += this.photographer.getPricesAndLikes(totalLikes)
   }
 }
 
