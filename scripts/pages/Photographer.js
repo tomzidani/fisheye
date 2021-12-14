@@ -1,4 +1,5 @@
 import create from "../factory/factory.js"
+import Lightbox from "../components/Lightbox.js"
 import { getData } from "../utils/helpers/data.helpers.js"
 import Modal from "../components/Modal.js"
 import List from "../components/List.js"
