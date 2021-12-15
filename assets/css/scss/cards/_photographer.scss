@@ -3,14 +3,18 @@
 .photographer-card {
   .card {
     &__wrapper {
-      text-align: center;
+      display: flex;
 
-      > a {
+      flex-direction: column;
+      align-items: center;
+
+      a {
         display: block;
+        height: 100%;
 
         &:hover {
           > .card__title,
-          > .card__media {
+          > .card__image {
             opacity: 0.7;
           }
         }
@@ -25,16 +29,17 @@
 
       border-radius: 50%;
       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
-      transition: ease-in-out 0.2s;
     }
 
     &__image {
       @include fullcover;
 
       border-radius: 50%;
+      transition: ease-in-out 0.2s;
     }
 
     &__title {
+      display: in;
       margin-top: 20px;
 
       font-size: 36px;

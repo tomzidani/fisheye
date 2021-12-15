@@ -1,12 +1,12 @@
 class List {
-  constructor() {
-    this.medias
+  constructor(medias) {
+    this.medias = medias
     this.sort = "popularity"
+
+    this.init()
   }
 
-  init = async (medias) => {
-    this.medias = medias
-
+  init = async () => {
     await this.display(this.sort)
     this.bindEvents()
   }
@@ -16,8 +16,14 @@ class List {
     const sort = document.querySelector("select#sort")
     const likes = document.querySelectorAll("button.card__likes")
 
-    list.addEventListener("sort", () => this.display())
     likes.forEach((l) => l.addEventListener("click", this.like))
+
+    list.addEventListener("display", () => {
+      const likes = document.querySelectorAll("button.card__likes")
+
+      likes.forEach((l) => l.addEventListener("click", this.like))
+    })
+
     sort.addEventListener("change", async (e) => await this.display(e.target.value))
   }
 

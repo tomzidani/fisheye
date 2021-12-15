@@ -1,16 +1,16 @@
 class Lightbox {
-  constructor() {
+  constructor(medias) {
     this.lightbox = document.querySelector('[data-component="lightbox"]')
     this.isLightboxOpen = false
 
-    this.medias = []
+    this.medias = medias
     this.currentMedia = {}
     this.currentMediaIndex
+
+    this.init()
   }
 
-  init = async (medias) => {
-    this.medias = medias
-
+  init = async () => {
     this.bindEvents()
   }
 

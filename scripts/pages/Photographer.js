@@ -10,6 +10,8 @@ class Photographer {
     this.photographerId = parseInt(window.location.search.split("?id=")[1])
 
     this.medias
+
+    this.init()
   }
 
   init = async () => {
@@ -18,17 +20,16 @@ class Photographer {
     this.photographer = await this.getPhotographer()
     this.medias = await this.getMedias()
 
-    this.displayPhotographer()
+    await this.displayPhotographer()
+    document.title = `Fisheye – ${this.photographer.name}`
 
-    const list = new List()
-    list.init(this.medias)
-
-    new Modal().init(this.photographer)
-    new Lightbox().init(this.medias)
+    new List(this.medias)
+    new Modal(this.photographer)
+    new Lightbox(this.medias)
   }
 
   redirect = () => {
-    window.location.href = "/"
+    window.location.href = "./"
   }
 
   getPhotographer = async () => {
@@ -40,8 +41,6 @@ class Photographer {
     return create("Photographer", photographer)
   }
 
-  // Medias
-  // ------
   getMedias = async () => {
     const allMedias = await getData("./scripts/provider/medias.json")
     const photographerMedias = allMedias.media.filter((m) => m.photographerId === this.photographerId)
@@ -54,12 +53,16 @@ class Photographer {
   }
 
   displayPhotographer = () => {
-    const infoSection = document.querySelector(".infos__wrapper")
-    const pageWrapper = document.querySelector(".app-photographer")
-    const totalLikes = this.medias.reduce((a, b) => +a + +b.likes, 0)
+    return new Promise((resolve) => {
+      const infoSection = document.querySelector(".infos__wrapper")
+      const pageWrapper = document.querySelector(".app-photographer")
+      const totalLikes = this.medias.reduce((a, b) => +a + +b.likes, 0)
 
-    infoSection.innerHTML = this.photographer.getInfos()
-    pageWrapper.innerHTML += this.photographer.getPricesAndLikes(totalLikes)
+      infoSection.innerHTML = this.photographer.getInfos()
+      pageWrapper.innerHTML += this.photographer.getPricesAndLikes(totalLikes)
+
+      resolve()
+    })
   }
 }
 

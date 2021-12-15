@@ -4,6 +4,8 @@ import { getData } from "../utils/helpers/data.helpers.js"
 class Home {
   constructor() {
     this.photographers = []
+
+    this.init()
   }
 
   init = async () => {

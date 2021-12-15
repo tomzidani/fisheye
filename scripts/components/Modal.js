@@ -1,11 +1,12 @@
 class Modal {
-  constructor() {
+  constructor(photographer) {
     this.modal
-    this.photographer
+    this.photographer = photographer
+
+    this.init()
   }
 
-  init = async (photographer) => {
-    this.photographer = photographer
+  init = async () => {
     this.modal = await this.display()
 
     this.bindEvents()

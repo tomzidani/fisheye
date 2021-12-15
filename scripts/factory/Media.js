@@ -2,7 +2,7 @@ class Media {
   constructor({ id, photographerId, title, image, video, likes, date, price }) {
     this.id = id
     this.photographerId = photographerId
-    this.title = title || ""
+    this.title = video ? "Vidéo" : title
     this.image = image ? `./uploads/medias/${image}` : null
     this.video = video ? `./uploads/medias/${video}` : null
     this.fullImage = image ? `./uploads/medias/full/${image}` : null
